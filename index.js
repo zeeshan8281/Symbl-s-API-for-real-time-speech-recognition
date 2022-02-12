@@ -2,8 +2,8 @@
  * The JWT token you get after authenticating with our API.
  * Check the Authentication section of the documentation for more details.
  */
-const accessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjY2Nzk1MTIzMTUwNjg0MTYiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoic0ZUdDM5c2Q3a1NFY0VubVl0bnFxaWdXMVFkNUZROWJAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNjQ0NjQ1OTEyLCJleHAiOjE2NDQ3MzIzMTIsImF6cCI6InNGVHQzOXNkN2tTRWNFbm1ZdG5xcWlnVzFRZDVGUTliIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.CIUq0_C0dMUWLZg7DyVZSzzg1bcCEWSM-aWSZtavklR3G4TVKhdD4bQuG457QXqWg8QgoCuJo2pXtWMVTxhKpTWlch9W3sz5vu-Cl-ScV6lr9nymERJScayJLRBU674sTidr7bWJ-BqWgQafti1_yQ_urN_l9pwwPYd6P3eDpdLGkPSGIiKZIluGma2UcRmxtZxMD5If2OC1JDuYAtBpU-kFYaNkxx-1zvAGkMw2K3N76P1H4lNqod25WVl-VV73jbfvJnZk_JzfqAVPK_oO616ndatay7H0nB75vGV8npzpPL_x0I5q8Wj2BR9wiEiDOLUknEmNPartVtLpHPXKjg";
-const uniqueMeetingId = btoa("user@example.com");
+const accessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjY2Nzk1MTIzMTUwNjg0MTYiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoic0ZUdDM5c2Q3a1NFY0VubVl0bnFxaWdXMVFkNUZROWJAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNjQ0NjQ1OTEyLCJleHAiOjE2NDQ3MzIzMTIsImF6cCI6InNGVHQzOXNkN2tTRWNFbm1ZdG5xcWlnVzFRZDVGUTliIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.CIUq0_C0dMUWLZg7DyVZSzzg1bcCEWSM-aWSZtavklR3G4TVKhdD4bQuG457QXqWg8QgoCuJo2pXtWMVTxhKpTWlch9W3sz5vu-Cl-ScV6lr9nymERJScayJLRBU674sTidr7bWJ-BqWgQafti1_yQ_urN_l9pwwPYd6P3eDpdLGkPSGIiKZIluGma2UcRmxtZxMD5If2OC1JDuYAtBpU-kFYaNkxx-1zvAGkMw2K3N76P1H4lNqod25WVl-VV73jbfvJnZk_JzfqAVPK_oO616ndatay7H0nB75vGV8npzpPL_x0I5q8Wj2BR9wiEiDOLUknEmNPartVtLpHPXKjg"
+const uniqueMeetingId = btoa("user@example.com")
 const symblEndpoint = `wss://api.symbl.ai/v1/realtime/insights/${uniqueMeetingId}?access_token=${accessToken}`;
 
 const ws = new WebSocket(symblEndpoint);
@@ -18,11 +18,6 @@ ws.onmessage = (event) => {
   if (data.type === 'message_response') {
     for (let message of data.messages) {
       console.log('Transcript (more accurate): ', message.payload.content);
-    }
-  }
-  if (data.type === 'topic_response') {
-    for (let topic of data.topics) {
-      console.log('Topic detected: ', topic.phrases)
     }
   }
   if (data.type === 'topic_response') {
